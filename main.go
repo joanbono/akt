@@ -3,6 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+
+	"github.com/gocaio/akt/modules/rotate"
+	"github.com/gocaio/akt/modules/setenv"
 )
 
 var (
@@ -29,5 +32,21 @@ func main() {
 	if profileFlag == "" {
 		flag.PrintDefaults()
 		return
+	}
+
+	if rotateFlag && !setenvFlag {
+		println("rotate ", rotateFlag)
+		rotate.GetNewPair()
+	}
+	if setenvFlag && !rotateFlag {
+		println("setenv ", setenvFlag)
+		setenv.GetVars()
+	}
+
+	if setenvFlag && rotateFlag {
+		println("rotate ", rotateFlag)
+		rotate.GetNewPair()
+		println("setenv ", setenvFlag)
+		setenv.GetVars()
 	}
 }
