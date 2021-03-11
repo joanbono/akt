@@ -41,7 +41,7 @@ func main() {
 
 	if !rotateFlag {
 		fmt.Printf("\n ☁️  🔑 AKT %v\n", bold.Sprintf(version))
-		fmt.Printf("%v Choose if you want to %v the keys or set them as variables\n", yellow.Sprintf("[!]"), bold.Sprintf("rotate"))
+		fmt.Printf("%v Insufficient options!\n", yellow.Sprintf("[!]"))
 		fmt.Printf("%v Try with %v\n\n", cyan.Sprintf("[i]"), bold.Sprintf("akt -h"))
 		return
 	} else {
