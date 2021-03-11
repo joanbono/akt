@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 
 	"github.com/fatih/color"
 	"github.com/joanbono/akt/modules/rotate"
@@ -45,6 +46,12 @@ func main() {
 		fmt.Printf("%v Try with %v\n\n", cyan.Sprintf("[i]"), bold.Sprintf("akt -h"))
 		return
 	} else {
+		//Check that .aws/credentials file is accessible before rotating the keys
+		//This will prevent rotated keys not being written anywhere
+		if _, err := os.Stat(writer.Reader()); err != nil {
+			fmt.Printf("%v .aws/credentials file not found\n", red.Sprintf("[-]"))
+			os.Exit(2)
+		}
 		accessKey, secretKey, username = rotate.Rotate(profileFlag, userFlag)
 		if saveFlag {
 			writer.Profiler(profileFlag, accessKey, secretKey)
@@ -52,5 +59,4 @@ func main() {
 			writer.Printer(profileFlag, accessKey, secretKey)
 		}
 	}
-
 }
