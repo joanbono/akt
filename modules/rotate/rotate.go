@@ -143,7 +143,7 @@ func CheckIAMErr(err error, profile, username string) {
 				fmt.Printf("%v Unknown error %v\n", red.Sprintf("[-]"), bold.Sprintf(`¯\_(ツ)_/¯`))
 			default:
 				if aerr.Error()[:21] == "NoCredentialProviders" {
-					fmt.Printf("[-] Profile %s not found\n", profile)
+					fmt.Printf("%v Profile %v not found\n", red.Sprintf("[-]"), bold.Sprintf(profile))
 				} else if aerr.Error()[:12] == "AccessDenied" {
 					if username == "" {
 						username = GetUsername(profile)
@@ -156,7 +156,7 @@ func CheckIAMErr(err error, profile, username string) {
 		} else {
 			fmt.Printf("%v Generic error: %v\n", red.Sprintf("[-]"), err.Error())
 		}
-		os.Exit(1)
+		os.Exit(3)
 	}
 
 }

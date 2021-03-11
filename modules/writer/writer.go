@@ -53,7 +53,10 @@ func Reader() string {
 //keys and replace them with the new ones
 func UpdateCredentials(awsCredentials, oldKey, newKey string) {
 	read, err := ioutil.ReadFile(awsCredentials)
-	CheckErr(err)
+	if err != nil {
+		fmt.Printf("%v Error reading %v\n", red.Sprintf("[-]"), bold.Sprintf(awsCredentials))
+		os.Exit(2)
+	}
 
 	newKeys := strings.Replace(string(read), oldKey, newKey, -1)
 
