@@ -22,7 +22,7 @@ $ akt -user joanbono -profile account -save
 
 Diffing the `.aws/credentials` file, the new key is saved there:
 
-```diif
+```diff
 diff --git a/credentials.backup b/credentials
 index 1123ef2..83a856e 100644
 --- a/credentials.backup
