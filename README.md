@@ -1,7 +1,5 @@
 ![](img/AKT_Banner.svg)
 
-Amazon Key Tool is a CLI tool to rotate AWS access keys for a given profile. 
-
 ## USAGE
 
 Rotate Access Keys for the default user on `default` profile. The keys will be printed and the user has to save them:
